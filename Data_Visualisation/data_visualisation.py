@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import calendar
 from numpy import arange
 
-plt.boxplot(top100_yr2010)
 
 # AUSTRALIAN EMISSION DATAFRAME 
 Aus_Population = {'1990':17065100, '2000':19153000, '2007':20827600,
@@ -18,24 +17,35 @@ Aus_Emission = {'1990':15.45288167, '2000':17.20060983, '2007':17.86526004,
 
 co2_Emission = pd.Series(Aus_Emission)
 australia = pd.DataFrame({'co2_emission':co2_Emission, 'Population':population})
-# print first 10 rows
-countries.head(10)
+
+# EMISSION FILE
+# create a new DataFrame for the CO2 emission from a csv file
+emission = pd.read_csv('data/emission.csv',encoding = 'ISO-8859-1')
+yr2010 = emission['2010']
+names  = emission['Country']
+yr2010.index = names
+yr2010_sorted = yr2010.sort_values(ascending = False)
+top100_yr2010 = yr2010_sorted[0:100]
+# create box plot for emission file 
+plt.boxplot(top100_yr2010)
+
 
 # COUNTRIES FILE
 # create a DataFrame from a csv file
 countries = pd.read_csv('data/countries.csv',encoding = 'ISO-8859-1')
-countries.set_index('Region')
+# print first 10 rows
+countries.head(10)
 
 # Sorting Countries by Region then Income
 #group by region first
 countries_by_region = countries.groupby('Region') # creates a groupby object (abstract)
 print("The size of each region group is:")
 print(countries_by_region.count())
-
 # group by income too
 print("The size of each region group AND income group is:")
 countries_by_region_by_income = countries.groupby(['Region', 'IncomeGroup'])
 print(countries_by_region_by_income.count())
+
 # bar chart 
 countries = ['Burundi','Ethiopia','Rep of Congo','Switzerland','Norway','Luxembourg']
 gnp = [90,110,110,49600,51810,56380] # GNP per capita (2004)
@@ -50,14 +60,6 @@ plt.bar(arange(len(births))-0.3, births, width=0.3)
 plt.bar(arange(len(deaths)),deaths, width=0.3,color='r')
 plt.xticks(arange(len(countries)),countries, rotation=30)
 
-# EMISSION FILE
-# create a new DataFrame for the CO2 emission from a csv file
-emission = pd.read_csv('data/emission.csv',encoding = 'ISO-8859-1')
-yr2010 = emission['2010']
-names  = emission['Country']
-yr2010.index = names
-yr2010_sorted = yr2010.sort_values(ascending = False)
-top100_yr2010 = yr2010_sorted[0:100]
 
 # IRIS FILE
 iris=pd.read_csv('data/iris.csv',encoding = 'ISO-8859-1',header=None)
