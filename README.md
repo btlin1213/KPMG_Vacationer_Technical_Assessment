@@ -2,7 +2,7 @@
 ### Introduction
 A number of .csv files were provided to us (namely iris.csv, countries.csv, emissions.csv from memory) which were made unavailable upon conclusion of this project. We were to create DataFrames, Bar Charts, Scatter Plots, Histograms and other formats of data visualisation, as well as perform actions such as sorting and searching, with a number of Python libraries (panda, numpy, matplotlib etc.) However, due to COVID-19, much of the course (Elements of Data Processing) was disrupted.
 
-# Bushfire Modelling (full mark)
+# Bushfire Modelling
 ### Introduction
 Computers can be used to build models of complex real world systems such as the weather, traffic and stockmarkets. Computer models can help us to understand the dynamics of these real world systems, and to make decisions about them. For example, a model that can predict Saturday's weather could help us decide whether to go to the beach or not. A traffic model could help us plan where to build a new road to reduce traffic jams. A model of the stockmarket could help us decide when to buy and sell shares.
 
